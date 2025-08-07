@@ -1,14 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./ToDoContainer.module.css";
-import { completeTodo } from "../features/todoSlice";
+import { completeTodo, deleteTodo } from "../features/todoSlice";
 
 function ToDoContainer() {
   const { todos } = useSelector((store) => store.todo);
   const dispatch = useDispatch();
-  //   function handleComplete(status) {
-  //     dispatch(completeTodo(status));
-  //     console.log(todos);
-  //   }
+ 
+
+  //   Delete Todo
+  function handleDelteTodo(id) {
+    dispatch(deleteTodo(id));
+  }
 
   return (
     <ul className={styles.todoconatiner}>
@@ -29,6 +31,8 @@ function ToDoContainer() {
           >
             Complete
           </button>
+
+          <button onClick={() => handleDelteTodo(todo.id)}>Delete</button>
         </li>
       ))}
     </ul>
